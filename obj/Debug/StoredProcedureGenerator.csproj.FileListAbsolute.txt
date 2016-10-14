@@ -1,0 +1,11 @@
+C:\Users\imed\Desktop\generator\bin\Debug\Templates\CrudSpTemplate.spt
+C:\Users\imed\Desktop\generator\bin\Debug\StoredProcedureGenerator.exe.config
+C:\Users\imed\Desktop\generator\bin\Debug\StoredProcedureGenerator.exe.manifest
+C:\Users\imed\Desktop\generator\bin\Debug\StoredProcedureGenerator.application
+C:\Users\imed\Desktop\generator\bin\Debug\StoredProcedureGenerator.exe
+C:\Users\imed\Desktop\generator\bin\Debug\StoredProcedureGenerator.pdb
+C:\Users\imed\Desktop\generator\obj\Debug\StoredProcedureGenerator.exe.manifest
+C:\Users\imed\Desktop\generator\obj\Debug\StoredProcedureGenerator.application
+C:\Users\imed\Desktop\generator\obj\Debug\StoredProcedureGenerator.exe
+C:\Users\imed\Desktop\generator\obj\Debug\StoredProcedureGenerator.pdb
+C:\Users\imed\Desktop\generator\obj\Debug\StoredProcedureGenerator.csprojResolveAssemblyReference.cache

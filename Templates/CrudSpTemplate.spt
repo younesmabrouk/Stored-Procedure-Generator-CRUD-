@@ -1,0 +1,57 @@
+﻿CREATE procedure [dbo].[sp<%tableName%>GetByPage]
+(
+<%parameterList%>,
+	@iSortCol INT=1,
+	@sSortDir NVARCHAR(100)='asc',	 
+	@pageNumber INT = 1,
+	@pageSize INT = 10
+)
+AS
+BEGIN
+	SELECT Count(*) Over() AS TotalRows,
+	<%selectList%>
+	FROM   <%tableName%><%tableAlias%>
+	WHERE <%selectWhereList%>
+	ORDER BY <%orderByList%>
+	OFFSET (@pageNumber-1)*@pageSize ROWS
+	FETCH NEXT @pageSize ROWS ONLY;
+END
+
+/*----------------------------------------------------------------------------*/
+
+CREATE procedure [dbo].[sp<%tableName%>Add]
+(
+<%parameterList%>
+)
+AS
+BEGIN
+	INSERT INTO <%tableName%> ( <%columnList%> )
+	VALUES ( <%valueList%>	)
+END
+
+/*----------------------------------------------------------------------------*/
+
+CREATE procedure [dbo].[sp<%tableName%>Update]
+(
+<%parameterList%>,
+<%deleteParameterList%>
+)
+AS
+BEGIN
+	UPDATE <%tableName%> SET <%setList%>
+	<%whereList%>
+END
+
+/*----------------------------------------------------------------------------*/
+
+CREATE procedure [dbo].[sp<%tableName%>Delete]
+(
+<%deleteParameterList%>
+)
+AS
+BEGIN
+	DELETE FROM <%tableName%>
+	WHERE <%primaryKeyList%>
+END
+
+/*----------------------------------------------------------------------------*/
