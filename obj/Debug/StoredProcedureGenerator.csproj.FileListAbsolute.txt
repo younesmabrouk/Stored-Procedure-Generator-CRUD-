@@ -9,3 +9,13 @@ C:\Users\imed\Desktop\generator\obj\Debug\StoredProcedureGenerator.application
 C:\Users\imed\Desktop\generator\obj\Debug\StoredProcedureGenerator.exe
 C:\Users\imed\Desktop\generator\obj\Debug\StoredProcedureGenerator.pdb
 C:\Users\imed\Desktop\generator\obj\Debug\StoredProcedureGenerator.csprojResolveAssemblyReference.cache
+E:\MyProjects\SPCrudGenerator\bin\Debug\StoredProcedureGenerator.exe.config
+E:\MyProjects\SPCrudGenerator\obj\Debug\StoredProcedureGenerator.exe
+E:\MyProjects\SPCrudGenerator\obj\Debug\StoredProcedureGenerator.pdb
+E:\MyProjects\SPCrudGenerator\bin\Debug\Templates\CrudSpTemplate.spt
+E:\MyProjects\SPCrudGenerator\bin\Debug\StoredProcedureGenerator.exe.manifest
+E:\MyProjects\SPCrudGenerator\bin\Debug\StoredProcedureGenerator.application
+E:\MyProjects\SPCrudGenerator\bin\Debug\StoredProcedureGenerator.exe
+E:\MyProjects\SPCrudGenerator\bin\Debug\StoredProcedureGenerator.pdb
+E:\MyProjects\SPCrudGenerator\obj\Debug\StoredProcedureGenerator.exe.manifest
+E:\MyProjects\SPCrudGenerator\obj\Debug\StoredProcedureGenerator.application

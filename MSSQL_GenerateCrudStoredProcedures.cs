@@ -178,6 +178,13 @@ namespace StoredProcedureGenerator
                     //Get the primary key
                     List<string> primaryKeyList = getPrimaryKey(sdr[0].ToString());
 
+                    if (selectList != "")
+                    {
+                        selectList += ",\n\t";
+                    }
+                    selectList += "\t" + Char.ToLowerInvariant(tableName[0]) + "." + sdr[1].ToString();  //collumnName
+                    //-----------------------
+
                     if (!primaryKeyList.Contains(sdr[1].ToString()) && Convert.ToInt32(sdr[4].ToString()) != 1)
                     {
                         if (collumnList != "")
@@ -187,12 +194,7 @@ namespace StoredProcedureGenerator
                         collumnList += "" + sdr[1].ToString();  //collumnName
                         //--------------------
 
-                        if (selectList != "")
-                        {
-                            selectList += ",\n\t";
-                        }
-                        selectList += "\t" +Char.ToLowerInvariant(tableName[0])+"." + sdr[1].ToString();  //collumnName
-                        //-----------------------
+
 
 
                         if (orderByList != "")
@@ -208,7 +210,7 @@ namespace StoredProcedureGenerator
                         {
                             parameterList += ",\n";
                         }
-                        parameterList += "\t" + "@" + StringHelper.toLowerFirstCharacter(sdr[1].ToString()) + " " + sdr[2].ToString() +
+                        parameterList += "\t" + "@" + StringHelper.toLowerFirstCharacter(sdr[1].ToString()) + " " + (sdr[2].ToString()).ToUpper() +
                             ((sdr[3].ToString() != "") ? (" (" + sdr[3].ToString() + ")") : "");
 
                         //------------------
@@ -258,7 +260,7 @@ namespace StoredProcedureGenerator
                         {
                             deleteParameterList += ",\n";
                         }
-                        deleteParameterList += "\t" + "@" + StringHelper.toLowerFirstCharacter(sdr[1].ToString()) + " " + sdr[2].ToString() +
+                        deleteParameterList += "\t" + "@" + StringHelper.toLowerFirstCharacter(sdr[1].ToString()) + " " + (sdr[2].ToString()).ToUpper() +
                             ((sdr[3].ToString() != "") ? (" (" + sdr[3].ToString() + ")") : "")
                             ;
 

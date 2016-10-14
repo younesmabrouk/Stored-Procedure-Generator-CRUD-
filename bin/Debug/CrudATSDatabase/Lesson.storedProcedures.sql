@@ -1,7 +1,7 @@
 CREATE procedure [dbo].[spLessonGetByPage]
 (
-	@subjectId int,
-	@name nvarchar (250),
+	@subjectId INT,
+	@name NVARCHAR (250),
 	@iSortCol INT=1,
 	@sSortDir NVARCHAR(100)='asc',	 
 	@pageNumber INT = 1,
@@ -10,7 +10,8 @@ CREATE procedure [dbo].[spLessonGetByPage]
 AS
 BEGIN
 	SELECT Count(*) Over() AS TotalRows,
-	 	l.SubjectId,
+	 	l.LessonId,
+		l.SubjectId,
 		l.Name
 	FROM   Lesson l
 	WHERE   (l.SubjectId=@subjectId OR @subjectId IS NULL)
@@ -27,8 +28,8 @@ END
 
 CREATE procedure [dbo].[spLessonAdd]
 (
-	@subjectId int,
-	@name nvarchar (250)
+	@subjectId INT,
+	@name NVARCHAR (250)
 )
 AS
 BEGIN
@@ -40,9 +41,9 @@ END
 
 CREATE procedure [dbo].[spLessonUpdate]
 (
-	@subjectId int,
-	@name nvarchar (250),
-	@lessonId int
+	@subjectId INT,
+	@name NVARCHAR (250),
+	@lessonId INT
 )
 AS
 BEGIN
@@ -54,7 +55,7 @@ END
 
 CREATE procedure [dbo].[spLessonDelete]
 (
-	@lessonId int
+	@lessonId INT
 )
 AS
 BEGIN
@@ -64,3 +65,16 @@ END
 
 /*----------------------------------------------------------------------------*/
 
+CREATE procedure [dbo].[spLessonGetAll]
+(
+)
+AS
+BEGIN
+	SELECT 
+	 	l.LessonId,
+		l.SubjectId,
+		l.Name
+	FROM   Lesson l
+END
+
+/*----------------------------------------------------------------------------*/

@@ -1,9 +1,9 @@
 CREATE procedure [dbo].[spAnswerGetByPage]
 (
-	@orderNum int,
-	@descriptionText nvarchar (-1),
-	@isTrue int,
-	@questionId int,
+	@orderNum INT,
+	@descriptionText NVARCHAR (-1),
+	@isTrue INT,
+	@questionId INT,
 	@iSortCol INT=1,
 	@sSortDir NVARCHAR(100)='asc',	 
 	@pageNumber INT = 1,
@@ -12,7 +12,8 @@ CREATE procedure [dbo].[spAnswerGetByPage]
 AS
 BEGIN
 	SELECT Count(*) Over() AS TotalRows,
-	 	a.OrderNum,
+	 	a.AnswerId,
+		a.OrderNum,
 		a.DescriptionText,
 		a.IsTrue,
 		a.QuestionId
@@ -37,10 +38,10 @@ END
 
 CREATE procedure [dbo].[spAnswerAdd]
 (
-	@orderNum int,
-	@descriptionText nvarchar (-1),
-	@isTrue int,
-	@questionId int
+	@orderNum INT,
+	@descriptionText NVARCHAR (-1),
+	@isTrue INT,
+	@questionId INT
 )
 AS
 BEGIN
@@ -52,11 +53,11 @@ END
 
 CREATE procedure [dbo].[spAnswerUpdate]
 (
-	@orderNum int,
-	@descriptionText nvarchar (-1),
-	@isTrue int,
-	@questionId int,
-	@answerId int
+	@orderNum INT,
+	@descriptionText NVARCHAR (-1),
+	@isTrue INT,
+	@questionId INT,
+	@answerId INT
 )
 AS
 BEGIN
@@ -68,7 +69,7 @@ END
 
 CREATE procedure [dbo].[spAnswerDelete]
 (
-	@answerId int
+	@answerId INT
 )
 AS
 BEGIN
@@ -78,3 +79,18 @@ END
 
 /*----------------------------------------------------------------------------*/
 
+CREATE procedure [dbo].[spAnswerGetAll]
+(
+)
+AS
+BEGIN
+	SELECT 
+	 	a.AnswerId,
+		a.OrderNum,
+		a.DescriptionText,
+		a.IsTrue,
+		a.QuestionId
+	FROM   Answer a
+END
+
+/*----------------------------------------------------------------------------*/

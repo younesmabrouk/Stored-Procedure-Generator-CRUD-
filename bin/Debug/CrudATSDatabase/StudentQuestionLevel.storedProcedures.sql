@@ -1,11 +1,11 @@
 CREATE procedure [dbo].[spStudentQuestionLevelGetByPage]
 (
-	@studentId int,
-	@subjectId int,
-	@questionlevel int,
-	@score float,
-	@rightQuestions int,
-	@allQuestions int,
+	@studentId INT,
+	@subjectId INT,
+	@questionlevel INT,
+	@score FLOAT,
+	@rightQuestions INT,
+	@allQuestions INT,
 	@iSortCol INT=1,
 	@sSortDir NVARCHAR(100)='asc',	 
 	@pageNumber INT = 1,
@@ -14,7 +14,8 @@ CREATE procedure [dbo].[spStudentQuestionLevelGetByPage]
 AS
 BEGIN
 	SELECT Count(*) Over() AS TotalRows,
-	 	s.StudentId,
+	 	s.StudentQuestionLevelId,
+		s.StudentId,
 		s.SubjectId,
 		s.Questionlevel,
 		s.Score,
@@ -47,12 +48,12 @@ END
 
 CREATE procedure [dbo].[spStudentQuestionLevelAdd]
 (
-	@studentId int,
-	@subjectId int,
-	@questionlevel int,
-	@score float,
-	@rightQuestions int,
-	@allQuestions int
+	@studentId INT,
+	@subjectId INT,
+	@questionlevel INT,
+	@score FLOAT,
+	@rightQuestions INT,
+	@allQuestions INT
 )
 AS
 BEGIN
@@ -64,13 +65,13 @@ END
 
 CREATE procedure [dbo].[spStudentQuestionLevelUpdate]
 (
-	@studentId int,
-	@subjectId int,
-	@questionlevel int,
-	@score float,
-	@rightQuestions int,
-	@allQuestions int,
-	@studentQuestionLevelId int
+	@studentId INT,
+	@subjectId INT,
+	@questionlevel INT,
+	@score FLOAT,
+	@rightQuestions INT,
+	@allQuestions INT,
+	@studentQuestionLevelId INT
 )
 AS
 BEGIN
@@ -82,7 +83,7 @@ END
 
 CREATE procedure [dbo].[spStudentQuestionLevelDelete]
 (
-	@studentQuestionLevelId int
+	@studentQuestionLevelId INT
 )
 AS
 BEGIN
@@ -92,3 +93,20 @@ END
 
 /*----------------------------------------------------------------------------*/
 
+CREATE procedure [dbo].[spStudentQuestionLevelGetAll]
+(
+)
+AS
+BEGIN
+	SELECT 
+	 	s.StudentQuestionLevelId,
+		s.StudentId,
+		s.SubjectId,
+		s.Questionlevel,
+		s.Score,
+		s.RightQuestions,
+		s.AllQuestions
+	FROM   StudentQuestionLevel s
+END
+
+/*----------------------------------------------------------------------------*/

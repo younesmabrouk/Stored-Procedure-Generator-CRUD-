@@ -1,8 +1,8 @@
 CREATE procedure [dbo].[spScolarLevelGetByPage]
 (
-	@stage int,
-	@name nvarchar (250),
-	@scolarYearId int,
+	@stage INT,
+	@name NVARCHAR (250),
+	@scolarYearId INT,
 	@iSortCol INT=1,
 	@sSortDir NVARCHAR(100)='asc',	 
 	@pageNumber INT = 1,
@@ -11,7 +11,8 @@ CREATE procedure [dbo].[spScolarLevelGetByPage]
 AS
 BEGIN
 	SELECT Count(*) Over() AS TotalRows,
-	 	s.Stage,
+	 	s.ScolarLevelId,
+		s.Stage,
 		s.Name,
 		s.ScolarYearId
 	FROM   ScolarLevel s
@@ -32,9 +33,9 @@ END
 
 CREATE procedure [dbo].[spScolarLevelAdd]
 (
-	@stage int,
-	@name nvarchar (250),
-	@scolarYearId int
+	@stage INT,
+	@name NVARCHAR (250),
+	@scolarYearId INT
 )
 AS
 BEGIN
@@ -46,10 +47,10 @@ END
 
 CREATE procedure [dbo].[spScolarLevelUpdate]
 (
-	@stage int,
-	@name nvarchar (250),
-	@scolarYearId int,
-	@scolarLevelId int
+	@stage INT,
+	@name NVARCHAR (250),
+	@scolarYearId INT,
+	@scolarLevelId INT
 )
 AS
 BEGIN
@@ -61,7 +62,7 @@ END
 
 CREATE procedure [dbo].[spScolarLevelDelete]
 (
-	@scolarLevelId int
+	@scolarLevelId INT
 )
 AS
 BEGIN
@@ -71,3 +72,17 @@ END
 
 /*----------------------------------------------------------------------------*/
 
+CREATE procedure [dbo].[spScolarLevelGetAll]
+(
+)
+AS
+BEGIN
+	SELECT 
+	 	s.ScolarLevelId,
+		s.Stage,
+		s.Name,
+		s.ScolarYearId
+	FROM   ScolarLevel s
+END
+
+/*----------------------------------------------------------------------------*/

@@ -1,7 +1,7 @@
 CREATE procedure [dbo].[spUserProfileGetByPage]
 (
-	@username nvarchar (56),
-	@email nvarchar (250),
+	@username NVARCHAR (56),
+	@email NVARCHAR (250),
 	@iSortCol INT=1,
 	@sSortDir NVARCHAR(100)='asc',	 
 	@pageNumber INT = 1,
@@ -10,7 +10,8 @@ CREATE procedure [dbo].[spUserProfileGetByPage]
 AS
 BEGIN
 	SELECT Count(*) Over() AS TotalRows,
-	 	u.Username,
+	 	u.UserId,
+		u.Username,
 		u.Email
 	FROM   UserProfile u
 	WHERE   (COALESCE(u.Username,'') LIKE '%' + COALESCE(@username, COALESCE(u.Username,'')) + '%')
@@ -27,8 +28,8 @@ END
 
 CREATE procedure [dbo].[spUserProfileAdd]
 (
-	@username nvarchar (56),
-	@email nvarchar (250)
+	@username NVARCHAR (56),
+	@email NVARCHAR (250)
 )
 AS
 BEGIN
@@ -40,9 +41,9 @@ END
 
 CREATE procedure [dbo].[spUserProfileUpdate]
 (
-	@username nvarchar (56),
-	@email nvarchar (250),
-	@userId int
+	@username NVARCHAR (56),
+	@email NVARCHAR (250),
+	@userId INT
 )
 AS
 BEGIN
@@ -54,7 +55,7 @@ END
 
 CREATE procedure [dbo].[spUserProfileDelete]
 (
-	@userId int
+	@userId INT
 )
 AS
 BEGIN
@@ -64,3 +65,16 @@ END
 
 /*----------------------------------------------------------------------------*/
 
+CREATE procedure [dbo].[spUserProfileGetAll]
+(
+)
+AS
+BEGIN
+	SELECT 
+	 	u.UserId,
+		u.Username,
+		u.Email
+	FROM   UserProfile u
+END
+
+/*----------------------------------------------------------------------------*/

@@ -1,11 +1,11 @@
 CREATE procedure [dbo].[spQuestionGetByPage]
 (
-	@descriptionText nvarchar (250),
-	@type int,
-	@lessonId int,
-	@withTime int,
-	@level int,
-	@isHidden int,
+	@descriptionText NVARCHAR (250),
+	@type INT,
+	@lessonId INT,
+	@withTime INT,
+	@level INT,
+	@isHidden INT,
 	@iSortCol INT=1,
 	@sSortDir NVARCHAR(100)='asc',	 
 	@pageNumber INT = 1,
@@ -14,7 +14,8 @@ CREATE procedure [dbo].[spQuestionGetByPage]
 AS
 BEGIN
 	SELECT Count(*) Over() AS TotalRows,
-	 	q.DescriptionText,
+	 	q.QuestionId,
+		q.DescriptionText,
 		q.Type,
 		q.LessonId,
 		q.WithTime,
@@ -47,12 +48,12 @@ END
 
 CREATE procedure [dbo].[spQuestionAdd]
 (
-	@descriptionText nvarchar (250),
-	@type int,
-	@lessonId int,
-	@withTime int,
-	@level int,
-	@isHidden int
+	@descriptionText NVARCHAR (250),
+	@type INT,
+	@lessonId INT,
+	@withTime INT,
+	@level INT,
+	@isHidden INT
 )
 AS
 BEGIN
@@ -64,13 +65,13 @@ END
 
 CREATE procedure [dbo].[spQuestionUpdate]
 (
-	@descriptionText nvarchar (250),
-	@type int,
-	@lessonId int,
-	@withTime int,
-	@level int,
-	@isHidden int,
-	@questionId int
+	@descriptionText NVARCHAR (250),
+	@type INT,
+	@lessonId INT,
+	@withTime INT,
+	@level INT,
+	@isHidden INT,
+	@questionId INT
 )
 AS
 BEGIN
@@ -82,7 +83,7 @@ END
 
 CREATE procedure [dbo].[spQuestionDelete]
 (
-	@questionId int
+	@questionId INT
 )
 AS
 BEGIN
@@ -92,3 +93,20 @@ END
 
 /*----------------------------------------------------------------------------*/
 
+CREATE procedure [dbo].[spQuestionGetAll]
+(
+)
+AS
+BEGIN
+	SELECT 
+	 	q.QuestionId,
+		q.DescriptionText,
+		q.Type,
+		q.LessonId,
+		q.WithTime,
+		q.Level,
+		q.IsHidden
+	FROM   Question q
+END
+
+/*----------------------------------------------------------------------------*/

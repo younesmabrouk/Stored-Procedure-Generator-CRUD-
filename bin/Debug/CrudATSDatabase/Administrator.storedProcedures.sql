@@ -1,7 +1,7 @@
 CREATE procedure [dbo].[spAdministratorGetByPage]
 (
-	@name nvarchar (250),
-	@userId int,
+	@name NVARCHAR (250),
+	@userId INT,
 	@iSortCol INT=1,
 	@sSortDir NVARCHAR(100)='asc',	 
 	@pageNumber INT = 1,
@@ -10,7 +10,8 @@ CREATE procedure [dbo].[spAdministratorGetByPage]
 AS
 BEGIN
 	SELECT Count(*) Over() AS TotalRows,
-	 	a.Name,
+	 	a.AdministratorId,
+		a.Name,
 		a.UserId
 	FROM   Administrator a
 	WHERE   (COALESCE(a.Name,'') LIKE '%' + COALESCE(@name, COALESCE(a.Name,'')) + '%')
@@ -27,8 +28,8 @@ END
 
 CREATE procedure [dbo].[spAdministratorAdd]
 (
-	@name nvarchar (250),
-	@userId int
+	@name NVARCHAR (250),
+	@userId INT
 )
 AS
 BEGIN
@@ -40,9 +41,9 @@ END
 
 CREATE procedure [dbo].[spAdministratorUpdate]
 (
-	@name nvarchar (250),
-	@userId int,
-	@administratorId int
+	@name NVARCHAR (250),
+	@userId INT,
+	@administratorId INT
 )
 AS
 BEGIN
@@ -54,7 +55,7 @@ END
 
 CREATE procedure [dbo].[spAdministratorDelete]
 (
-	@administratorId int
+	@administratorId INT
 )
 AS
 BEGIN
@@ -64,3 +65,16 @@ END
 
 /*----------------------------------------------------------------------------*/
 
+CREATE procedure [dbo].[spAdministratorGetAll]
+(
+)
+AS
+BEGIN
+	SELECT 
+	 	a.AdministratorId,
+		a.Name,
+		a.UserId
+	FROM   Administrator a
+END
+
+/*----------------------------------------------------------------------------*/

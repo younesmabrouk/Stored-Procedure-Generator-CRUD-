@@ -1,7 +1,7 @@
 CREATE procedure [dbo].[spScolarYearGetByPage]
 (
-	@name nvarchar (250),
-	@countryId int,
+	@name NVARCHAR (250),
+	@countryId INT,
 	@iSortCol INT=1,
 	@sSortDir NVARCHAR(100)='asc',	 
 	@pageNumber INT = 1,
@@ -10,7 +10,8 @@ CREATE procedure [dbo].[spScolarYearGetByPage]
 AS
 BEGIN
 	SELECT Count(*) Over() AS TotalRows,
-	 	s.Name,
+	 	s.ScolarYearId,
+		s.Name,
 		s.CountryId
 	FROM   ScolarYear s
 	WHERE   (COALESCE(s.Name,'') LIKE '%' + COALESCE(@name, COALESCE(s.Name,'')) + '%')
@@ -27,8 +28,8 @@ END
 
 CREATE procedure [dbo].[spScolarYearAdd]
 (
-	@name nvarchar (250),
-	@countryId int
+	@name NVARCHAR (250),
+	@countryId INT
 )
 AS
 BEGIN
@@ -40,9 +41,9 @@ END
 
 CREATE procedure [dbo].[spScolarYearUpdate]
 (
-	@name nvarchar (250),
-	@countryId int,
-	@scolarYearId int
+	@name NVARCHAR (250),
+	@countryId INT,
+	@scolarYearId INT
 )
 AS
 BEGIN
@@ -54,7 +55,7 @@ END
 
 CREATE procedure [dbo].[spScolarYearDelete]
 (
-	@scolarYearId int
+	@scolarYearId INT
 )
 AS
 BEGIN
@@ -64,3 +65,16 @@ END
 
 /*----------------------------------------------------------------------------*/
 
+CREATE procedure [dbo].[spScolarYearGetAll]
+(
+)
+AS
+BEGIN
+	SELECT 
+	 	s.ScolarYearId,
+		s.Name,
+		s.CountryId
+	FROM   ScolarYear s
+END
+
+/*----------------------------------------------------------------------------*/

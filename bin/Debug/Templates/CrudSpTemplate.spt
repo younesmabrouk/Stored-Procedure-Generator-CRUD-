@@ -55,3 +55,15 @@ BEGIN
 END
 
 /*----------------------------------------------------------------------------*/
+
+CREATE procedure [dbo].[sp<%tableName%>GetAll]
+(
+)
+AS
+BEGIN
+	SELECT 
+	<%selectList%>
+	FROM   <%tableName%><%tableAlias%>
+END
+
+/*----------------------------------------------------------------------------*/

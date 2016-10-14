@@ -1,12 +1,12 @@
 CREATE procedure [dbo].[spStudentGetByPage]
 (
-	@fullname nvarchar (250),
-	@countryId int,
-	@scolarLevelId int,
-	@email nvarchar (250),
-	@password nvarchar (250),
-	@gregDate nvarchar (250),
-	@deviceToken nvarchar (-1),
+	@fullname NVARCHAR (250),
+	@countryId INT,
+	@scolarLevelId INT,
+	@email NVARCHAR (250),
+	@password NVARCHAR (250),
+	@gregDate NVARCHAR (250),
+	@deviceToken NVARCHAR (-1),
 	@iSortCol INT=1,
 	@sSortDir NVARCHAR(100)='asc',	 
 	@pageNumber INT = 1,
@@ -15,7 +15,8 @@ CREATE procedure [dbo].[spStudentGetByPage]
 AS
 BEGIN
 	SELECT Count(*) Over() AS TotalRows,
-	 	s.Fullname,
+	 	s.StudentId,
+		s.Fullname,
 		s.CountryId,
 		s.ScolarLevelId,
 		s.Email,
@@ -52,13 +53,13 @@ END
 
 CREATE procedure [dbo].[spStudentAdd]
 (
-	@fullname nvarchar (250),
-	@countryId int,
-	@scolarLevelId int,
-	@email nvarchar (250),
-	@password nvarchar (250),
-	@gregDate nvarchar (250),
-	@deviceToken nvarchar (-1)
+	@fullname NVARCHAR (250),
+	@countryId INT,
+	@scolarLevelId INT,
+	@email NVARCHAR (250),
+	@password NVARCHAR (250),
+	@gregDate NVARCHAR (250),
+	@deviceToken NVARCHAR (-1)
 )
 AS
 BEGIN
@@ -70,14 +71,14 @@ END
 
 CREATE procedure [dbo].[spStudentUpdate]
 (
-	@fullname nvarchar (250),
-	@countryId int,
-	@scolarLevelId int,
-	@email nvarchar (250),
-	@password nvarchar (250),
-	@gregDate nvarchar (250),
-	@deviceToken nvarchar (-1),
-	@studentId int
+	@fullname NVARCHAR (250),
+	@countryId INT,
+	@scolarLevelId INT,
+	@email NVARCHAR (250),
+	@password NVARCHAR (250),
+	@gregDate NVARCHAR (250),
+	@deviceToken NVARCHAR (-1),
+	@studentId INT
 )
 AS
 BEGIN
@@ -89,7 +90,7 @@ END
 
 CREATE procedure [dbo].[spStudentDelete]
 (
-	@studentId int
+	@studentId INT
 )
 AS
 BEGIN
@@ -99,3 +100,21 @@ END
 
 /*----------------------------------------------------------------------------*/
 
+CREATE procedure [dbo].[spStudentGetAll]
+(
+)
+AS
+BEGIN
+	SELECT 
+	 	s.StudentId,
+		s.Fullname,
+		s.CountryId,
+		s.ScolarLevelId,
+		s.Email,
+		s.Password,
+		s.GregDate,
+		s.DeviceToken
+	FROM   Student s
+END
+
+/*----------------------------------------------------------------------------*/

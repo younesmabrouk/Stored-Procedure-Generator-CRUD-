@@ -1,15 +1,15 @@
 CREATE procedure [dbo].[spwebpages_MembershipGetByPage]
 (
-	@createDate datetime,
-	@confirmationToken nvarchar (128),
-	@isConfirmed bit,
-	@lastPasswordFailureDate datetime,
-	@passwordFailuresSinceLastSuccess int,
-	@password nvarchar (128),
-	@passwordChangedDate datetime,
-	@passwordSalt nvarchar (128),
-	@passwordVerificationToken nvarchar (128),
-	@passwordVerificationTokenExpirationDate datetime,
+	@createDate DATETIME,
+	@confirmationToken NVARCHAR (128),
+	@isConfirmed BIT,
+	@lastPasswordFailureDate DATETIME,
+	@passwordFailuresSinceLastSuccess INT,
+	@password NVARCHAR (128),
+	@passwordChangedDate DATETIME,
+	@passwordSalt NVARCHAR (128),
+	@passwordVerificationToken NVARCHAR (128),
+	@passwordVerificationTokenExpirationDate DATETIME,
 	@iSortCol INT=1,
 	@sSortDir NVARCHAR(100)='asc',	 
 	@pageNumber INT = 1,
@@ -18,7 +18,8 @@ CREATE procedure [dbo].[spwebpages_MembershipGetByPage]
 AS
 BEGIN
 	SELECT Count(*) Over() AS TotalRows,
-	 	w.CreateDate,
+	 	w.UserId,
+		w.CreateDate,
 		w.ConfirmationToken,
 		w.IsConfirmed,
 		w.LastPasswordFailureDate,
@@ -67,16 +68,16 @@ END
 
 CREATE procedure [dbo].[spwebpages_MembershipAdd]
 (
-	@createDate datetime,
-	@confirmationToken nvarchar (128),
-	@isConfirmed bit,
-	@lastPasswordFailureDate datetime,
-	@passwordFailuresSinceLastSuccess int,
-	@password nvarchar (128),
-	@passwordChangedDate datetime,
-	@passwordSalt nvarchar (128),
-	@passwordVerificationToken nvarchar (128),
-	@passwordVerificationTokenExpirationDate datetime
+	@createDate DATETIME,
+	@confirmationToken NVARCHAR (128),
+	@isConfirmed BIT,
+	@lastPasswordFailureDate DATETIME,
+	@passwordFailuresSinceLastSuccess INT,
+	@password NVARCHAR (128),
+	@passwordChangedDate DATETIME,
+	@passwordSalt NVARCHAR (128),
+	@passwordVerificationToken NVARCHAR (128),
+	@passwordVerificationTokenExpirationDate DATETIME
 )
 AS
 BEGIN
@@ -88,17 +89,17 @@ END
 
 CREATE procedure [dbo].[spwebpages_MembershipUpdate]
 (
-	@createDate datetime,
-	@confirmationToken nvarchar (128),
-	@isConfirmed bit,
-	@lastPasswordFailureDate datetime,
-	@passwordFailuresSinceLastSuccess int,
-	@password nvarchar (128),
-	@passwordChangedDate datetime,
-	@passwordSalt nvarchar (128),
-	@passwordVerificationToken nvarchar (128),
-	@passwordVerificationTokenExpirationDate datetime,
-	@userId int
+	@createDate DATETIME,
+	@confirmationToken NVARCHAR (128),
+	@isConfirmed BIT,
+	@lastPasswordFailureDate DATETIME,
+	@passwordFailuresSinceLastSuccess INT,
+	@password NVARCHAR (128),
+	@passwordChangedDate DATETIME,
+	@passwordSalt NVARCHAR (128),
+	@passwordVerificationToken NVARCHAR (128),
+	@passwordVerificationTokenExpirationDate DATETIME,
+	@userId INT
 )
 AS
 BEGIN
@@ -110,7 +111,7 @@ END
 
 CREATE procedure [dbo].[spwebpages_MembershipDelete]
 (
-	@userId int
+	@userId INT
 )
 AS
 BEGIN
@@ -120,3 +121,24 @@ END
 
 /*----------------------------------------------------------------------------*/
 
+CREATE procedure [dbo].[spwebpages_MembershipGetAll]
+(
+)
+AS
+BEGIN
+	SELECT 
+	 	w.UserId,
+		w.CreateDate,
+		w.ConfirmationToken,
+		w.IsConfirmed,
+		w.LastPasswordFailureDate,
+		w.PasswordFailuresSinceLastSuccess,
+		w.Password,
+		w.PasswordChangedDate,
+		w.PasswordSalt,
+		w.PasswordVerificationToken,
+		w.PasswordVerificationTokenExpirationDate
+	FROM   webpages_Membership w
+END
+
+/*----------------------------------------------------------------------------*/

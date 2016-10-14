@@ -1,9 +1,9 @@
 CREATE procedure [dbo].[spStudentAnswerGetByPage]
 (
-	@studentId int,
-	@questionId int,
-	@answerId int,
-	@gregDate nvarchar (300),
+	@studentId INT,
+	@questionId INT,
+	@answerId INT,
+	@gregDate NVARCHAR (300),
 	@iSortCol INT=1,
 	@sSortDir NVARCHAR(100)='asc',	 
 	@pageNumber INT = 1,
@@ -12,7 +12,8 @@ CREATE procedure [dbo].[spStudentAnswerGetByPage]
 AS
 BEGIN
 	SELECT Count(*) Over() AS TotalRows,
-	 	s.StudentId,
+	 	s.StudentAnswerId,
+		s.StudentId,
 		s.QuestionId,
 		s.AnswerId,
 		s.GregDate
@@ -37,10 +38,10 @@ END
 
 CREATE procedure [dbo].[spStudentAnswerAdd]
 (
-	@studentId int,
-	@questionId int,
-	@answerId int,
-	@gregDate nvarchar (300)
+	@studentId INT,
+	@questionId INT,
+	@answerId INT,
+	@gregDate NVARCHAR (300)
 )
 AS
 BEGIN
@@ -52,11 +53,11 @@ END
 
 CREATE procedure [dbo].[spStudentAnswerUpdate]
 (
-	@studentId int,
-	@questionId int,
-	@answerId int,
-	@gregDate nvarchar (300),
-	@studentAnswerId int
+	@studentId INT,
+	@questionId INT,
+	@answerId INT,
+	@gregDate NVARCHAR (300),
+	@studentAnswerId INT
 )
 AS
 BEGIN
@@ -68,7 +69,7 @@ END
 
 CREATE procedure [dbo].[spStudentAnswerDelete]
 (
-	@studentAnswerId int
+	@studentAnswerId INT
 )
 AS
 BEGIN
@@ -78,3 +79,18 @@ END
 
 /*----------------------------------------------------------------------------*/
 
+CREATE procedure [dbo].[spStudentAnswerGetAll]
+(
+)
+AS
+BEGIN
+	SELECT 
+	 	s.StudentAnswerId,
+		s.StudentId,
+		s.QuestionId,
+		s.AnswerId,
+		s.GregDate
+	FROM   StudentAnswer s
+END
+
+/*----------------------------------------------------------------------------*/

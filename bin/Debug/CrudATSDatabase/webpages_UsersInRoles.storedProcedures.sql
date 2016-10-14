@@ -9,7 +9,8 @@ CREATE procedure [dbo].[spwebpages_UsersInRolesGetByPage]
 AS
 BEGIN
 	SELECT Count(*) Over() AS TotalRows,
-	 
+	 	w.UserId,
+		w.RoleId
 	FROM   webpages_UsersInRoles w
 	WHERE  
 	ORDER BY  
@@ -34,8 +35,8 @@ END
 CREATE procedure [dbo].[spwebpages_UsersInRolesUpdate]
 (
 ,
-	@userId int,
-	@roleId int
+	@userId INT,
+	@roleId INT
 )
 AS
 BEGIN
@@ -48,8 +49,8 @@ END
 
 CREATE procedure [dbo].[spwebpages_UsersInRolesDelete]
 (
-	@userId int,
-	@roleId int
+	@userId INT,
+	@roleId INT
 )
 AS
 BEGIN
@@ -60,3 +61,15 @@ END
 
 /*----------------------------------------------------------------------------*/
 
+CREATE procedure [dbo].[spwebpages_UsersInRolesGetAll]
+(
+)
+AS
+BEGIN
+	SELECT 
+	 	w.UserId,
+		w.RoleId
+	FROM   webpages_UsersInRoles w
+END
+
+/*----------------------------------------------------------------------------*/

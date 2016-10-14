@@ -1,6 +1,6 @@
 CREATE procedure [dbo].[spwebpages_OAuthMembershipGetByPage]
 (
-	@userId int,
+	@userId INT,
 	@iSortCol INT=1,
 	@sSortDir NVARCHAR(100)='asc',	 
 	@pageNumber INT = 1,
@@ -9,7 +9,9 @@ CREATE procedure [dbo].[spwebpages_OAuthMembershipGetByPage]
 AS
 BEGIN
 	SELECT Count(*) Over() AS TotalRows,
-	 	w.UserId
+	 	w.Provider,
+		w.ProviderUserId,
+		w.UserId
 	FROM   webpages_OAuthMembership w
 	WHERE   (w.UserId=@userId OR @userId IS NULL)
 	ORDER BY  CASE WHEN @iSortCol = 55 AND @sSortDir='asc' THEN w.UserId END asc,
@@ -22,7 +24,7 @@ END
 
 CREATE procedure [dbo].[spwebpages_OAuthMembershipAdd]
 (
-	@userId int
+	@userId INT
 )
 AS
 BEGIN
@@ -34,9 +36,9 @@ END
 
 CREATE procedure [dbo].[spwebpages_OAuthMembershipUpdate]
 (
-	@userId int,
-	@provider nvarchar (30),
-	@providerUserId nvarchar (100)
+	@userId INT,
+	@provider NVARCHAR (30),
+	@providerUserId NVARCHAR (100)
 )
 AS
 BEGIN
@@ -49,8 +51,8 @@ END
 
 CREATE procedure [dbo].[spwebpages_OAuthMembershipDelete]
 (
-	@provider nvarchar (30),
-	@providerUserId nvarchar (100)
+	@provider NVARCHAR (30),
+	@providerUserId NVARCHAR (100)
 )
 AS
 BEGIN
@@ -61,3 +63,16 @@ END
 
 /*----------------------------------------------------------------------------*/
 
+CREATE procedure [dbo].[spwebpages_OAuthMembershipGetAll]
+(
+)
+AS
+BEGIN
+	SELECT 
+	 	w.Provider,
+		w.ProviderUserId,
+		w.UserId
+	FROM   webpages_OAuthMembership w
+END
+
+/*----------------------------------------------------------------------------*/

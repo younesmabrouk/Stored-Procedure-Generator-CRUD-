@@ -1,9 +1,9 @@
 CREATE procedure [dbo].[spCountryGetByPage]
 (
-	@name nvarchar (250),
-	@englishName nvarchar (250),
-	@phoneCode nvarchar (250),
-	@nationality nvarchar (250),
+	@name NVARCHAR (250),
+	@englishName NVARCHAR (250),
+	@phoneCode NVARCHAR (250),
+	@nationality NVARCHAR (250),
 	@iSortCol INT=1,
 	@sSortDir NVARCHAR(100)='asc',	 
 	@pageNumber INT = 1,
@@ -12,7 +12,8 @@ CREATE procedure [dbo].[spCountryGetByPage]
 AS
 BEGIN
 	SELECT Count(*) Over() AS TotalRows,
-	 	c.Name,
+	 	c.CountryId,
+		c.Name,
 		c.EnglishName,
 		c.PhoneCode,
 		c.Nationality
@@ -37,10 +38,10 @@ END
 
 CREATE procedure [dbo].[spCountryAdd]
 (
-	@name nvarchar (250),
-	@englishName nvarchar (250),
-	@phoneCode nvarchar (250),
-	@nationality nvarchar (250)
+	@name NVARCHAR (250),
+	@englishName NVARCHAR (250),
+	@phoneCode NVARCHAR (250),
+	@nationality NVARCHAR (250)
 )
 AS
 BEGIN
@@ -52,11 +53,11 @@ END
 
 CREATE procedure [dbo].[spCountryUpdate]
 (
-	@name nvarchar (250),
-	@englishName nvarchar (250),
-	@phoneCode nvarchar (250),
-	@nationality nvarchar (250),
-	@countryId int
+	@name NVARCHAR (250),
+	@englishName NVARCHAR (250),
+	@phoneCode NVARCHAR (250),
+	@nationality NVARCHAR (250),
+	@countryId INT
 )
 AS
 BEGIN
@@ -68,7 +69,7 @@ END
 
 CREATE procedure [dbo].[spCountryDelete]
 (
-	@countryId int
+	@countryId INT
 )
 AS
 BEGIN
@@ -78,3 +79,18 @@ END
 
 /*----------------------------------------------------------------------------*/
 
+CREATE procedure [dbo].[spCountryGetAll]
+(
+)
+AS
+BEGIN
+	SELECT 
+	 	c.CountryId,
+		c.Name,
+		c.EnglishName,
+		c.PhoneCode,
+		c.Nationality
+	FROM   Country c
+END
+
+/*----------------------------------------------------------------------------*/

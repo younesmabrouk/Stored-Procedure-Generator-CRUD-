@@ -1,6 +1,6 @@
 CREATE procedure [dbo].[spwebpages_RolesGetByPage]
 (
-	@roleName nvarchar (256),
+	@roleName NVARCHAR (256),
 	@iSortCol INT=1,
 	@sSortDir NVARCHAR(100)='asc',	 
 	@pageNumber INT = 1,
@@ -9,7 +9,8 @@ CREATE procedure [dbo].[spwebpages_RolesGetByPage]
 AS
 BEGIN
 	SELECT Count(*) Over() AS TotalRows,
-	 	w.RoleName
+	 	w.RoleId,
+		w.RoleName
 	FROM   webpages_Roles w
 	WHERE   (COALESCE(w.RoleName,'') LIKE '%' + COALESCE(@roleName, COALESCE(w.RoleName,'')) + '%')
 	ORDER BY  CASE WHEN @iSortCol = 56 AND @sSortDir='asc' THEN w.RoleName END asc,
@@ -22,7 +23,7 @@ END
 
 CREATE procedure [dbo].[spwebpages_RolesAdd]
 (
-	@roleName nvarchar (256)
+	@roleName NVARCHAR (256)
 )
 AS
 BEGIN
@@ -34,8 +35,8 @@ END
 
 CREATE procedure [dbo].[spwebpages_RolesUpdate]
 (
-	@roleName nvarchar (256),
-	@roleId int
+	@roleName NVARCHAR (256),
+	@roleId INT
 )
 AS
 BEGIN
@@ -47,7 +48,7 @@ END
 
 CREATE procedure [dbo].[spwebpages_RolesDelete]
 (
-	@roleId int
+	@roleId INT
 )
 AS
 BEGIN
@@ -57,3 +58,15 @@ END
 
 /*----------------------------------------------------------------------------*/
 
+CREATE procedure [dbo].[spwebpages_RolesGetAll]
+(
+)
+AS
+BEGIN
+	SELECT 
+	 	w.RoleId,
+		w.RoleName
+	FROM   webpages_Roles w
+END
+
+/*----------------------------------------------------------------------------*/

@@ -1,8 +1,8 @@
 CREATE procedure [dbo].[spNotificationGetByPage]
 (
-	@descriptionText nvarchar (-1),
-	@gregDate nvarchar (250),
-	@administratorId int,
+	@descriptionText NVARCHAR (-1),
+	@gregDate NVARCHAR (250),
+	@administratorId INT,
 	@iSortCol INT=1,
 	@sSortDir NVARCHAR(100)='asc',	 
 	@pageNumber INT = 1,
@@ -11,7 +11,8 @@ CREATE procedure [dbo].[spNotificationGetByPage]
 AS
 BEGIN
 	SELECT Count(*) Over() AS TotalRows,
-	 	n.DescriptionText,
+	 	n.NotificationId,
+		n.DescriptionText,
 		n.GregDate,
 		n.AdministratorId
 	FROM   Notification n
@@ -32,9 +33,9 @@ END
 
 CREATE procedure [dbo].[spNotificationAdd]
 (
-	@descriptionText nvarchar (-1),
-	@gregDate nvarchar (250),
-	@administratorId int
+	@descriptionText NVARCHAR (-1),
+	@gregDate NVARCHAR (250),
+	@administratorId INT
 )
 AS
 BEGIN
@@ -46,10 +47,10 @@ END
 
 CREATE procedure [dbo].[spNotificationUpdate]
 (
-	@descriptionText nvarchar (-1),
-	@gregDate nvarchar (250),
-	@administratorId int,
-	@notificationId int
+	@descriptionText NVARCHAR (-1),
+	@gregDate NVARCHAR (250),
+	@administratorId INT,
+	@notificationId INT
 )
 AS
 BEGIN
@@ -61,7 +62,7 @@ END
 
 CREATE procedure [dbo].[spNotificationDelete]
 (
-	@notificationId int
+	@notificationId INT
 )
 AS
 BEGIN
@@ -71,3 +72,17 @@ END
 
 /*----------------------------------------------------------------------------*/
 
+CREATE procedure [dbo].[spNotificationGetAll]
+(
+)
+AS
+BEGIN
+	SELECT 
+	 	n.NotificationId,
+		n.DescriptionText,
+		n.GregDate,
+		n.AdministratorId
+	FROM   Notification n
+END
+
+/*----------------------------------------------------------------------------*/

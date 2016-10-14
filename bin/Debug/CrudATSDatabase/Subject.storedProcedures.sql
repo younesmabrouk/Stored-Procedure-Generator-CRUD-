@@ -1,7 +1,7 @@
 CREATE procedure [dbo].[spSubjectGetByPage]
 (
-	@name nvarchar (250),
-	@scolarLevelId int,
+	@name NVARCHAR (250),
+	@scolarLevelId INT,
 	@iSortCol INT=1,
 	@sSortDir NVARCHAR(100)='asc',	 
 	@pageNumber INT = 1,
@@ -10,7 +10,8 @@ CREATE procedure [dbo].[spSubjectGetByPage]
 AS
 BEGIN
 	SELECT Count(*) Over() AS TotalRows,
-	 	s.Name,
+	 	s.SubjectId,
+		s.Name,
 		s.ScolarLevelId
 	FROM   Subject s
 	WHERE   (COALESCE(s.Name,'') LIKE '%' + COALESCE(@name, COALESCE(s.Name,'')) + '%')
@@ -27,8 +28,8 @@ END
 
 CREATE procedure [dbo].[spSubjectAdd]
 (
-	@name nvarchar (250),
-	@scolarLevelId int
+	@name NVARCHAR (250),
+	@scolarLevelId INT
 )
 AS
 BEGIN
@@ -40,9 +41,9 @@ END
 
 CREATE procedure [dbo].[spSubjectUpdate]
 (
-	@name nvarchar (250),
-	@scolarLevelId int,
-	@subjectId int
+	@name NVARCHAR (250),
+	@scolarLevelId INT,
+	@subjectId INT
 )
 AS
 BEGIN
@@ -54,7 +55,7 @@ END
 
 CREATE procedure [dbo].[spSubjectDelete]
 (
-	@subjectId int
+	@subjectId INT
 )
 AS
 BEGIN
@@ -64,3 +65,16 @@ END
 
 /*----------------------------------------------------------------------------*/
 
+CREATE procedure [dbo].[spSubjectGetAll]
+(
+)
+AS
+BEGIN
+	SELECT 
+	 	s.SubjectId,
+		s.Name,
+		s.ScolarLevelId
+	FROM   Subject s
+END
+
+/*----------------------------------------------------------------------------*/
